@@ -5,27 +5,51 @@ using UnityEngine;
 
 public class SubmarineController : MonoBehaviour
 {
-    // Currently in test state 
+    [Header("References")]
+    [SerializeField] private GameObject submarine;
+    [SerializeField] private PlayerController playerController;
 
-    private float movementDir = 1;
+    private bool UsingUtility = false;
+    private SubmarineMovement subMov;
 
-    void Start()
+    private void Start()
     {
-        StartCoroutine(ChangeDir());
+        subMov = submarine.GetComponent<SubmarineMovement>();
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        transform.Translate(new Vector2(0, movementDir * Time.deltaTime));
-        transform.Translate(new Vector2(movementDir * Time.deltaTime , 0));
-    }
-
-    IEnumerator ChangeDir()
-    {
-        while (true)
+        if(UsingUtility)
         {
-            yield return new WaitForSeconds(4f);
-            movementDir *= -1;
+            //Exit Submarine Control
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                UsingUtility = false;
+                playerController.UsingUtilityFalse();
+            }
+
+            //Change Speed of Submarine
+            if(Input.GetKeyDown(KeyCode.A))
+            {
+                subMov.decHorizontalSpeed();
+            }
+            if(Input.GetKeyDown(KeyCode.D))
+            {
+                subMov.incHorizontalSpeed();
+            }
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                subMov.incVerticalSpeed();
+            }
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                subMov.decVerticalSpeed();
+            }
         }
+    }
+
+    public void UsingUtilityActive()
+    {
+        UsingUtility = true;
     }
 }

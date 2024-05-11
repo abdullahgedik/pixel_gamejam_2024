@@ -4,8 +4,31 @@ using UnityEngine;
 
 public class GunController : MonoBehaviour
 {
-    public void UseGun()
+    [Header("References")]
+    [SerializeField] private PlayerController playerController;
+
+    private bool UsingUtility = false;
+
+    private void Start()
     {
-        Debug.Log("Gun Used");
+
+    }
+
+    private void Update()
+    {
+        if (UsingUtility)
+        {
+            //Exit Gun Control
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                UsingUtility = false;
+                playerController.UsingUtilityFalse();
+            }
+        }
+    }
+
+    public void UsingUtilityActive()
+    {
+        UsingUtility = true;
     }
 }

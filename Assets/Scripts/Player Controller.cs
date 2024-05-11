@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpingForce = 12;
 
     private float horizontalInput;
+    private bool isUsingUtility = false;
     private bool isFacingRight = true;
 
     private void Update()
@@ -31,7 +32,8 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.velocity = new Vector2 (horizontalInput * movementSpeed, rb.velocity.y);
+        if (!isUsingUtility)
+            rb.velocity = new Vector2 (horizontalInput * movementSpeed, rb.velocity.y);
     }
 
     private bool IsGrounded()
@@ -41,13 +43,16 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
-        if (Input.GetButtonDown("Jump") && IsGrounded())
+        if (!isUsingUtility)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpingForce);
-        }
-        if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.6f);
+            if (Input.GetButtonDown("Jump") && IsGrounded())
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpingForce);
+            }
+            if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.6f);
+            }
         }
     }
 
@@ -66,7 +71,29 @@ public class PlayerController : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.E) && Physics2D.OverlapCircle(interactPosition.position, .9f, interactLayer))
         {
-            Physics2D.OverlapCircle(interactPosition.position, .9f, interactLayer).GetComponent<GunController>().UseGun();
+            //Gun Controller
+            if(Physics2D.OverlapCircle(interactPosition.position, .9f, interactLayer).GetComponent<GunController>() != null)
+            {
+                Physics2D.OverlapCircle(interactPosition.position, .9f, interactLayer).GetComponent<GunController>().UsingUtilityActive();
+                UsingUtilityTrue();
+            }
+
+            //Submarine Controller
+            if (Physics2D.OverlapCircle(interactPosition.position, .9f, interactLayer).GetComponent<SubmarineController>() != null)
+            {
+                Physics2D.OverlapCircle(interactPosition.position, .9f, interactLayer).GetComponent<SubmarineController>().UsingUtilityActive();
+                UsingUtilityTrue();
+            }
         }
+    }
+
+    //Utility True/False
+    public void UsingUtilityTrue()
+    {
+        isUsingUtility = true;
+    }
+    public void UsingUtilityFalse()
+    {
+        isUsingUtility = false;
     }
 }
