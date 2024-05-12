@@ -33,7 +33,9 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         if (!isUsingUtility)
-            rb.velocity = new Vector2 (horizontalInput * movementSpeed, rb.velocity.y);
+            rb.velocity = new Vector2(horizontalInput * movementSpeed, rb.velocity.y);
+        else
+            rb.velocity = new Vector2(0, rb.velocity.y);
     }
 
     private bool IsGrounded()
@@ -69,22 +71,27 @@ public class PlayerController : MonoBehaviour
 
     private void Interact()
     {
-        if(Input.GetKeyDown(KeyCode.E) && Physics2D.OverlapCircle(interactPosition.position, .9f, interactLayer))
+        if(Input.GetKeyDown(KeyCode.E) && Physics2D.OverlapCircle(interactPosition.position, .2f, interactLayer))
         {
             //Gun Controller
-            if(Physics2D.OverlapCircle(interactPosition.position, .9f, interactLayer).GetComponent<GunController>() != null)
+            if(Physics2D.OverlapCircle(interactPosition.position, .2f, interactLayer).GetComponent<GunController>() != null)
             {
-                Physics2D.OverlapCircle(interactPosition.position, .9f, interactLayer).GetComponent<GunController>().UsingUtilityActive();
+                Physics2D.OverlapCircle(interactPosition.position, .2f, interactLayer).GetComponent<GunController>().UsingUtilityActive();
                 UsingUtilityTrue();
             }
 
             //Submarine Controller
-            if (Physics2D.OverlapCircle(interactPosition.position, .9f, interactLayer).GetComponent<SubmarineController>() != null)
+            if (Physics2D.OverlapCircle(interactPosition.position, .2f, interactLayer).GetComponent<SubmarineController>() != null)
             {
-                Physics2D.OverlapCircle(interactPosition.position, .9f, interactLayer).GetComponent<SubmarineController>().UsingUtilityActive();
+                Physics2D.OverlapCircle(interactPosition.position, .2f, interactLayer).GetComponent<SubmarineController>().UsingUtilityActive();
                 UsingUtilityTrue();
             }
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(interactPosition.position, .2f);
     }
 
     //Utility True/False

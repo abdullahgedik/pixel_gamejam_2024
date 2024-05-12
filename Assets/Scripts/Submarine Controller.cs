@@ -22,7 +22,7 @@ public class SubmarineController : MonoBehaviour
         if(UsingUtility)
         {
             //Exit Submarine Control
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.Q))
             {
                 UsingUtility = false;
                 playerController.UsingUtilityFalse();
