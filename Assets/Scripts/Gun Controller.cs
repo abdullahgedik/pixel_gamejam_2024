@@ -18,17 +18,12 @@ public class GunController : MonoBehaviour
     {
         if (UsingUtility)
         {
-            //Exit Gun Control
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                UsingUtility = false;
-                playerController.UsingUtilityFalse();
-            }
+
         }
     }
 
-    public void UsingUtilityActive()
+    public void SetUtilityActive(bool var)
     {
-        UsingUtility = true;
+        UsingUtility = var;
     }
 }

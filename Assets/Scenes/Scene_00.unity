@@ -242,7 +242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72acd88e9f2f7e942ae6d51c79378586, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 5
+  maxSpeed: 3.5
   incSpeed: 1
 --- !u!1 &519420028
 GameObject:
@@ -579,7 +579,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cb3cc1178a7dd54fa5a43be66502e00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 591079084}
   groundCheck: {fileID: 1719698074}
   groundLayer:
     serializedVersion: 2

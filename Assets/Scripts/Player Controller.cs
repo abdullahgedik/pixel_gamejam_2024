@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Transform interactPosition;
@@ -16,8 +15,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpingForce = 12;
 
     private float horizontalInput;
-    private bool isUsingUtility = false;
+
+    private bool isBusy = false;
     private bool isFacingRight = true;
+
+    private Rigidbody2D rb;
+    private Collider2D interactedObject;
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
 
     private void Update()
     {
@@ -32,7 +40,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!isUsingUtility)
+        if (!isBusy)
             rb.velocity = new Vector2(horizontalInput * movementSpeed, rb.velocity.y);
         else
             rb.velocity = new Vector2(0, rb.velocity.y);
@@ -45,7 +53,7 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
-        if (!isUsingUtility)
+        if (!isBusy)
         {
             if (Input.GetButtonDown("Jump") && IsGrounded())
             {
@@ -73,19 +81,9 @@ public class PlayerController : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.E) && Physics2D.OverlapCircle(interactPosition.position, .2f, interactLayer))
         {
-            //Gun Controller
-            if(Physics2D.OverlapCircle(interactPosition.position, .2f, interactLayer).GetComponent<GunController>() != null)
-            {
-                Physics2D.OverlapCircle(interactPosition.position, .2f, interactLayer).GetComponent<GunController>().UsingUtilityActive();
-                UsingUtilityTrue();
-            }
+            interactedObject = Physics2D.OverlapCircle(interactPosition.position, .2f, interactLayer);
 
-            //Submarine Controller
-            if (Physics2D.OverlapCircle(interactPosition.position, .2f, interactLayer).GetComponent<SubmarineController>() != null)
-            {
-                Physics2D.OverlapCircle(interactPosition.position, .2f, interactLayer).GetComponent<SubmarineController>().UsingUtilityActive();
-                UsingUtilityTrue();
-            }
+            SetUtilityState(interactedObject);
         }
     }
 
@@ -94,13 +92,29 @@ public class PlayerController : MonoBehaviour
         Gizmos.DrawWireSphere(interactPosition.position, .2f);
     }
 
-    //Utility True/False
-    public void UsingUtilityTrue()
+    public void SetUtilityState(Collider2D interactedObj)
     {
-        isUsingUtility = true;
+        if(!isBusy)
+        {
+            SetBusyness(true);
+            if (interactedObj.GetComponent<GunController>() != null)
+                interactedObj.GetComponent<GunController>().SetUtilityActive(true);
+            if (interactedObj.GetComponent<SubmarineController>() != null)
+                interactedObj.GetComponent<SubmarineController>().SetUtilityActive(true);
+        }
+        else
+        {
+            SetBusyness(false);
+            if (interactedObj.GetComponent<GunController>() != null)
+                interactedObj.GetComponent<GunController>().SetUtilityActive(false);
+            if (interactedObj.GetComponent<SubmarineController>() != null)
+                interactedObj.GetComponent<SubmarineController>().SetUtilityActive(false);
+        }
     }
-    public void UsingUtilityFalse()
+
+    //Busyness True/False
+    public void SetBusyness(bool var)
     {
-        isUsingUtility = false;
+        isBusy = var;
     }
 }

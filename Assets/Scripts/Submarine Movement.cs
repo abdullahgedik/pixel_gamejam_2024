@@ -6,10 +6,10 @@ using UnityEngine;
 public class SubmarineMovement : MonoBehaviour
 {
     [Header("Settings")]
-    [SerializeField] private float maxSpeed = 5f;
+    [SerializeField] private float maxSpeed = 4.5f;
     [SerializeField] private float incSpeed = 1.0f;
 
-    private float horizontalSpeed = 0;
+    private float horizontalSpeed = 0.5f;
     private float verticalSpeed = 0;
 
     private void FixedUpdate()

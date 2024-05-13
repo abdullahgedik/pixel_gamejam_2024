@@ -9,7 +9,7 @@ public class SubmarineController : MonoBehaviour
     [SerializeField] private GameObject submarine;
     [SerializeField] private PlayerController playerController;
 
-    private bool UsingUtility = false;
+    private bool UtilityActive = false;
     private SubmarineMovement subMov;
 
     private void Start()
@@ -19,21 +19,14 @@ public class SubmarineController : MonoBehaviour
 
     private void Update()
     {
-        if(UsingUtility)
+        if(UtilityActive)
         {
-            //Exit Submarine Control
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                UsingUtility = false;
-                playerController.UsingUtilityFalse();
-            }
-
             //Change Speed of Submarine
-            if(Input.GetKeyDown(KeyCode.A))
+            if (Input.GetKeyDown(KeyCode.A))
             {
                 subMov.decHorizontalSpeed();
             }
-            if(Input.GetKeyDown(KeyCode.D))
+            if (Input.GetKeyDown(KeyCode.D))
             {
                 subMov.incHorizontalSpeed();
             }
@@ -48,8 +41,8 @@ public class SubmarineController : MonoBehaviour
         }
     }
 
-    public void UsingUtilityActive()
+    public void SetUtilityActive(bool var)
     {
-        UsingUtility = true;
+        UtilityActive = var;
     }
 }
