@@ -336,7 +336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8f534262d00ce34c9e3b4e0f78ea4f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FishPrefab: {fileID: 249472659}
+  FishPrefab: {fileID: 1483617780}
   minimumSpawnTime: 3
   maximumSpawnTime: 5
   spawnAmount: 3
