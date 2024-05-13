@@ -17,12 +17,13 @@ public class FishBehavior : MonoBehaviour
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
-        _targetDirection = transform.up;
+        _targetDirection = transform.right;
     }
 
     private void FixedUpdate()
     {
         UpdateTargetDirection();
+        RotateTowardsTarget();
         SetVelocity();
     }
 
@@ -41,11 +42,21 @@ public class FishBehavior : MonoBehaviour
             Quaternion rotation = Quaternion.AngleAxis(angleChange, transform.forward);
             _targetDirection = rotation * _targetDirection;
 
-            _changeDirectionCooldown = Random.Range(1f, 5f);
+            _changeDirectionCooldown = Random.Range(0.1f, 2f);
         }
     }
+
+
+    private void RotateTowardsTarget()
+    {
+        Quaternion targetRotation = Quaternion.LookRotation(transform.forward, _targetDirection);
+        Quaternion rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
+
+        _rigidbody.SetRotation(rotation);
+    }
+
     private void SetVelocity()
     {
-        _rigidbody.velocity = transform.up * _speed;
+        _rigidbody.velocity = transform.right * _speed;
     }
 }
