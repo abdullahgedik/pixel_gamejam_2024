@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform interactPosition;
     [SerializeField] private LayerMask interactLayer;
 
-    [Header("Settings")]
+    [Header("Player Movement Settings")]
     [SerializeField] private float movementSpeed = 6;
     [SerializeField] private float jumpingForce = 12;
 

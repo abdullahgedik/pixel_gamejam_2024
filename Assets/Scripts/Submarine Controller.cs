@@ -8,6 +8,13 @@ public class SubmarineController : MonoBehaviour
     [Header("References")]
     [SerializeField] private GameObject submarine;
 
+    [Header("Input Settings")]
+    [SerializeField] private KeyCode mLeft = KeyCode.A;
+    [SerializeField] private KeyCode mRight = KeyCode.D;
+    [SerializeField] private KeyCode mUp = KeyCode.W;
+    [SerializeField] private KeyCode mDown = KeyCode.S;
+
+
     private bool utilityActive = false;
     private SubmarineMovement subMov;
 
@@ -21,19 +28,19 @@ public class SubmarineController : MonoBehaviour
         if(utilityActive)
         {
             //Change Speed of Submarine
-            if (Input.GetKeyDown(KeyCode.A))
+            if (Input.GetKeyDown(mLeft))
             {
                 subMov.decHorizontalSpeed();
             }
-            if (Input.GetKeyDown(KeyCode.D))
+            if (Input.GetKeyDown(mRight))
             {
                 subMov.incHorizontalSpeed();
             }
-            if (Input.GetKeyDown(KeyCode.W))
+            if (Input.GetKeyDown(mUp))
             {
                 subMov.incVerticalSpeed();
             }
-            if (Input.GetKeyDown(KeyCode.S))
+            if (Input.GetKeyDown(mDown))
             {
                 subMov.decVerticalSpeed();
             }
