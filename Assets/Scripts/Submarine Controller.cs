@@ -7,9 +7,8 @@ public class SubmarineController : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private GameObject submarine;
-    [SerializeField] private PlayerController playerController;
 
-    private bool UtilityActive = false;
+    private bool utilityActive = false;
     private SubmarineMovement subMov;
 
     private void Start()
@@ -19,7 +18,7 @@ public class SubmarineController : MonoBehaviour
 
     private void Update()
     {
-        if(UtilityActive)
+        if(utilityActive)
         {
             //Change Speed of Submarine
             if (Input.GetKeyDown(KeyCode.A))
@@ -43,6 +42,6 @@ public class SubmarineController : MonoBehaviour
 
     public void SetUtilityActive(bool var)
     {
-        UtilityActive = var;
+        utilityActive = var;
     }
 }

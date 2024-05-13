@@ -5,9 +5,9 @@ using UnityEngine;
 public class GunController : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private PlayerController playerController;
+    [SerializeField] private GameObject gun;
 
-    private bool UsingUtility = false;
+    private bool utilityActive = false;
 
     private void Start()
     {
@@ -16,7 +16,7 @@ public class GunController : MonoBehaviour
 
     private void Update()
     {
-        if (UsingUtility)
+        if (utilityActive)
         {
 
         }
@@ -24,6 +24,6 @@ public class GunController : MonoBehaviour
 
     public void SetUtilityActive(bool var)
     {
-        UsingUtility = var;
+        utilityActive = var;
     }
 }
