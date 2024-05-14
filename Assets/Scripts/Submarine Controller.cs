@@ -7,12 +7,15 @@ public class SubmarineController : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private GameObject submarine;
+    [SerializeField] private TorpedoFire leftTorpedo;
+    [SerializeField] private TorpedoFire rightTorpedo;
 
     [Header("Input Settings")]
-    [SerializeField] private KeyCode mLeft = KeyCode.A;  //Left
-    [SerializeField] private KeyCode mRight = KeyCode.D; //Right
-    [SerializeField] private KeyCode mUp = KeyCode.W;    //Upward
-    [SerializeField] private KeyCode mDown = KeyCode.S;  //Downward
+    [SerializeField] private KeyCode mLeft = KeyCode.A;     //Left
+    [SerializeField] private KeyCode mRight = KeyCode.D;    //Right
+    [SerializeField] private KeyCode mUp = KeyCode.W;       //Upward
+    [SerializeField] private KeyCode mDown = KeyCode.S;     //Downward
+    [SerializeField] private KeyCode tFire = KeyCode.Space; //Fire Torpedos
 
 
     private bool utilityActive = false;
@@ -43,6 +46,11 @@ public class SubmarineController : MonoBehaviour
             if (Input.GetKeyDown(mDown))
             {
                 subMov.decVerticalSpeed();
+            }
+            if (Input.GetKeyDown(tFire))
+            {
+                leftTorpedo.Fire();
+                rightTorpedo.Fire();
             }
         }
     }
