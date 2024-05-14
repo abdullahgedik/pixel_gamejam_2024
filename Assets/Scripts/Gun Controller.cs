@@ -32,9 +32,9 @@ public class GunController : MonoBehaviour
             {
                 gunShoot.RotateLeft();
             }
-            if (Input.GetKeyDown(Fire))
+            if (Input.GetKey(Fire))
             {
-                Debug.Log("Fire!");
+                gunShoot.Fire();
             }
         }
     }

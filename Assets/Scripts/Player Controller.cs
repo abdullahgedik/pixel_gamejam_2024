@@ -79,9 +79,9 @@ public class PlayerController : MonoBehaviour
 
     private void Interact()
     {
-        if(Input.GetKeyDown(KeyCode.E) && Physics2D.OverlapCircle(interactPosition.position, .2f, interactLayer))
+        if(Input.GetKeyDown(KeyCode.E) && Physics2D.OverlapCircle(interactPosition.position, .35f, interactLayer))
         {
-            interactedObject = Physics2D.OverlapCircle(interactPosition.position, .2f, interactLayer);
+            interactedObject = Physics2D.OverlapCircle(interactPosition.position, .35f, interactLayer);
 
             SetUtilityState(interactedObject);
         }
@@ -89,10 +89,10 @@ public class PlayerController : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(interactPosition.position, .2f);
+        Gizmos.DrawWireSphere(interactPosition.position, .35f);
     }
 
-    public void SetUtilityState(Collider2D interactedObj)
+    private void SetUtilityState(Collider2D interactedObj)
     {
         if(!isBusy)
         {

@@ -9,10 +9,10 @@ public class SubmarineController : MonoBehaviour
     [SerializeField] private GameObject submarine;
 
     [Header("Input Settings")]
-    [SerializeField] private KeyCode mLeft = KeyCode.A;
-    [SerializeField] private KeyCode mRight = KeyCode.D;
-    [SerializeField] private KeyCode mUp = KeyCode.W;
-    [SerializeField] private KeyCode mDown = KeyCode.S;
+    [SerializeField] private KeyCode mLeft = KeyCode.A;  //Left
+    [SerializeField] private KeyCode mRight = KeyCode.D; //Right
+    [SerializeField] private KeyCode mUp = KeyCode.W;    //Upward
+    [SerializeField] private KeyCode mDown = KeyCode.S;  //Downward
 
 
     private bool utilityActive = false;
