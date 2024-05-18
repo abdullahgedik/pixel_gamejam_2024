@@ -222,3 +222,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e0c0b1342c6784479f93d326d75e2a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageAmount: 20
+  isTorpedo: 0
+  torpedoExplosionRadius: 5

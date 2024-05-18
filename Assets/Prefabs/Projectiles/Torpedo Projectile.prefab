@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2924888467162846968}
   - component: {fileID: 2667572676872919871}
   - component: {fileID: 4213341776746224292}
+  - component: {fileID: -7918641160521663866}
   m_Layer: 0
   m_Name: Torpedo Projectile
   m_TagString: Untagged
@@ -262,3 +263,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-7918641160521663866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1806625977975681258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e0c0b1342c6784479f93d326d75e2a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 50
+  isTorpedo: 1
+  torpedoExplosionRadius: 7
