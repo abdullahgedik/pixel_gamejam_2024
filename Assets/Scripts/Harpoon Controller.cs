@@ -26,11 +26,11 @@ public class HarpoonController : MonoBehaviour
         {
             if(Input.GetKey(hLeft))
             {
-                //Rotate Left
+                harpoonShoot.RotateLeft();
             }
             if (Input.GetKey(hRight))
             {
-                //Rotate Right
+                harpoonShoot.RotateRight();
             }
             if (Input.GetKey(hFirePull))
             {

@@ -6,7 +6,8 @@ using UnityEngine;
 public class SubmarineMovement : MonoBehaviour
 {
     [Header("Settings")]
-    [SerializeField] private float maxSpeed = 4.5f;
+    [SerializeField] private float maxSpeedX = 3.5f;
+    [SerializeField] private float maxSpeedY = 3f;
     [SerializeField] private float incSpeed = 1.0f;
 
     private float horizontalSpeed = 0.5f;
@@ -20,25 +21,25 @@ public class SubmarineMovement : MonoBehaviour
     public void incHorizontalSpeed()
     {
         horizontalSpeed += incSpeed;
-        if(horizontalSpeed >= maxSpeed)
-            horizontalSpeed = maxSpeed;
+        if(horizontalSpeed >= maxSpeedX)
+            horizontalSpeed = maxSpeedX;
     }
     public void decHorizontalSpeed()
     {
         horizontalSpeed -= incSpeed;
-        if(horizontalSpeed <= -maxSpeed)
-            horizontalSpeed = -maxSpeed;
+        if(horizontalSpeed <= -maxSpeedX)
+            horizontalSpeed = -maxSpeedX;
     }
     public void incVerticalSpeed()
     {
         verticalSpeed += incSpeed;
-        if(verticalSpeed >= maxSpeed)
-            verticalSpeed = maxSpeed;
+        if(verticalSpeed >= maxSpeedY)
+            verticalSpeed = maxSpeedY;
     }
     public void decVerticalSpeed()
     {
         verticalSpeed -= incSpeed;
-        if(verticalSpeed <= -maxSpeed)
-            verticalSpeed = -maxSpeed;
+        if(verticalSpeed <= -maxSpeedY)
+            verticalSpeed = -maxSpeedY;
     }
 }

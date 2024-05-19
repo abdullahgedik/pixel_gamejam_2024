@@ -68,12 +68,15 @@ public class PlayerController : MonoBehaviour
 
     private void Flip()
     {
-        if (isFacingRight && horizontalInput < 0f || !isFacingRight && horizontalInput > 0f)
+        if (!isBusy)
         {
-            isFacingRight = !isFacingRight;
-            Vector3 localScale = transform.localScale;
-            localScale.x *= -1f;
-            transform.localScale = localScale;
+            if (isFacingRight && horizontalInput < 0f || !isFacingRight && horizontalInput > 0f)
+            {
+                isFacingRight = !isFacingRight;
+                Vector3 localScale = transform.localScale;
+                localScale.x *= -1f;
+                transform.localScale = localScale;
+            }
         }
     }
 
@@ -101,6 +104,8 @@ public class PlayerController : MonoBehaviour
                 interactedObj.GetComponent<GunController>().SetUtilityActive(true);
             if (interactedObj.GetComponent<SubmarineController>() != null)
                 interactedObj.GetComponent<SubmarineController>().SetUtilityActive(true);
+            if (interactedObj.GetComponent<HarpoonController>() != null)
+                interactedObj.GetComponent<HarpoonController>().SetUtilityActive(true);
         }
         else
         {
@@ -109,6 +114,8 @@ public class PlayerController : MonoBehaviour
                 interactedObj.GetComponent<GunController>().SetUtilityActive(false);
             if (interactedObj.GetComponent<SubmarineController>() != null)
                 interactedObj.GetComponent<SubmarineController>().SetUtilityActive(false);
+            if (interactedObj.GetComponent<HarpoonController>() != null)
+                interactedObj.GetComponent<HarpoonController>().SetUtilityActive(false);
         }
     }
 

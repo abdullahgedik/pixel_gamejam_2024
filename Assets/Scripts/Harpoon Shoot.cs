@@ -7,6 +7,7 @@ public class HarpoonShoot : MonoBehaviour
     [Header("References")]
     [SerializeField] private Transform firePoint;
     [SerializeField] private GameObject harpoon;
+    [SerializeField] private GameObject fakeHarpoon;
 
     [Header("Harpoon Gun Rotation Settings")]
     [SerializeField] private float rotationSpeed;
@@ -15,6 +16,7 @@ public class HarpoonShoot : MonoBehaviour
 
     [Header("Harpoon Gun Shoot Settings")]
     [SerializeField] private float fireForce;
+    [SerializeField] private float maxDistance;
 
     //Rotation
     private Vector3 currentRotation;
@@ -42,5 +44,8 @@ public class HarpoonShoot : MonoBehaviour
         currentRotation.z -= harpoonGunRotation;
     }
 
+    public void ShootHarpoon()
+    {
 
+    }
 }
